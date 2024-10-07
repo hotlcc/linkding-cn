@@ -29,8 +29,8 @@
   items:
     - expression: 'Archived bookmarks'
       replacement: '已归档书签'
-    - expression: '<h2>Tags</h2>'
-      replacement: '<h2>标签</h2>'
+    - expression: 'Tags'
+      replacement: '标签'
 
 # bookmarks/bookmark_list.html
 - includes:
@@ -153,8 +153,8 @@
   items:
     - expression: '<h2>Bookmarks</h2>'
       replacement: '<h2>书签</h2>'
-    - expression: '<h2>Tags</h2>'
-      replacement: '<h2>标签</h2>'
+    - expression: 'Tags'
+      replacement: '标签'
 
 # bookmarks/layout.html
 - includes:
@@ -234,8 +234,8 @@
       replacement: '<h2>共享书签</h2>'
     - expression: '<h2>User</h2>'
       replacement: '<h2>用户</h2>'
-    - expression: '<h2>Tags</h2>'
-      replacement: '<h2>标签</h2>'
+    - expression: 'Tags'
+      replacement: '标签'
 
 # bookmarks/user_select.html
 - includes:
