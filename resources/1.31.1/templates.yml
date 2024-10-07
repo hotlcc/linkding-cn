@@ -1,0 +1,711 @@
+#################################################
+##                                             ##
+##           Linkding 汉化资源 v1.31.1          ##
+##                                             ##
+##    https://github.com/hotlcc/linkding-cn    ##
+##                                             ##
+#################################################
+
+# admin
+
+# admin/background_tasks.html
+- includes:
+    - admin/background_tasks.html
+  items:
+    - expression: 'Name'
+      replacement: '名称'
+    - expression: 'Args'
+      replacement: '参数'
+    - expression: 'Retries'
+      replacement: '重试次数'
+    - expression: '{{ page.paginator.count }} tasks'
+      replacement: '{{ page.paginator.count }} 个任务'
+
+# bookmarks
+
+# bookmarks/archive.html
+- includes:
+    - bookmarks/archive.html
+  items:
+    - expression: 'Archived bookmarks'
+      replacement: '已归档书签'
+    - expression: 'Tags'
+      replacement: '标签'
+
+# bookmarks/bookmark_list.html
+- includes:
+    - bookmarks/bookmark_list.html
+  items:
+    - expression: '>View</a>'
+      replacement: '>查看</a>'
+    - expression: '>Edit</a>'
+      replacement: '>编辑</a>'
+    - expression: '>Unarchive'
+      replacement: '>取消归档'
+    - expression: '>Archive'
+      replacement: '>归档'
+    - expression: '>Remove'
+      replacement: '>删除'
+    - expression: 'Notes'
+      replacement: '笔记'
+    - expression: 'Mark as read?'
+      replacement: '标记为已读？'
+    - expression: 'Unread'
+      replacement: '未读'
+    - expression: 'Unshare?'
+      replacement: '取消共享？'
+    - expression: 'Shared\s*\n\s*<'
+      expression-type: REGEXP
+      replacement: '共享的<'
+
+# bookmarks/close.html
+- includes:
+    - bookmarks/close.html
+  items:
+    - expression: 'You can now close this window.'
+      replacement: '您现在可以关闭此窗口。'
+
+# bookmarks/edit.html
+- includes:
+    - bookmarks/edit.html
+  items:
+    - expression: '<h2>Edit bookmark</h2>'
+      replacement: '<h2>编辑书签</h2>'
+
+# bookmarks/empty_bookmarks.html
+- includes:
+    - bookmarks/empty_bookmarks.html
+  items:
+    - expression: 'You have no bookmarks yet'
+      replacement: '您还没有书签'
+    - expression: 'You can get started by'
+      replacement: '您可以通过'
+    - expression: 'adding'
+      replacement: '添加'
+    - expression: 'bookmarks,'
+      replacement: '书签，'
+    - expression: 'importing'
+      replacement: '导入'
+    - expression: 'your existing bookmarks or configuring the'
+      replacement: '现有书签或配置'
+    - expression: 'browser extension'
+      replacement: '浏览器扩展'
+    - expression: ' or the '
+      replacement: ' 或 '
+    - expression: 'bookmarklet</a>.'
+      replacement: '书签小程序</a> 来开始。'
+
+# bookmarks/form.html
+- includes:
+    - bookmarks/form.html
+  items:
+    - expression: '>URL</label>'
+      replacement: '>网址</label>'
+    - expression: 'This URL is already bookmarked.'
+      replacement: '该网址已被添加书签，'
+    - expression: 'The form has been pre-filled with the existing bookmark, and saving the form will update the existing bookmark.'
+      replacement: '表单已预先填充了现有书签信息，保存表单将更新现有书签。'
+    - expression: '>Tags</label>'
+      replacement: '>标签</label>'
+    - expression: 'Enter any number of tags separated by space and <strong>without</strong> the hash (#).'
+      replacement: '输入任意数量的标签，以空格分隔，<strong>不</strong>包含#。'
+    - expression: 'If a tag does not exist it will be automatically created.'
+      replacement: '如果标签不存在，它将被自动创建。'
+    - expression: ''
+      replacement: ''
+    - expression: '>Title</label>'
+      replacement: '>标题</label>'
+    - expression: '>Clear'
+      replacement: '>清除'
+    - expression: 'Optional, leave empty to use title from website.'
+      replacement: '可选，留空以使用站点标题。'
+    - expression: '>Description</label>'
+      replacement: '>描述</label>'
+    - expression: 'Optional, leave empty to use description from website.'
+      replacement: '可选，留空以使用站点描述。'
+    - expression: '>Notes</span>'
+      replacement: '>笔记</span>'
+    - expression: 'Additional notes, supports Markdown.'
+      replacement: '附加说明，支持Markdown语法。'
+    - expression: 'Mark as unread'
+      replacement: '标记为未读'
+    - expression: 'Unread bookmarks can be filtered for, and marked as read after you had a chance to look at them.'
+      replacement: '未读书签可以被过滤，并且在您查看它们之后标记为已读。'
+    - expression: '<span>Share</span>'
+      replacement: '<span>共享</span>'
+    - expression: 'Share this bookmark with other registered users and anonymous users.'
+      replacement: '与其他已注册用户和匿名用户共享此书签。'
+    - expression: 'Share this bookmark with other registered users.'
+      replacement: '与其他已注册用户共享此书签。'
+    - expression: 'Save and close'
+      replacement: '保存并关闭'
+    - expression: 'value="Save"'
+      replacement: 'value="保存"'
+    - expression: 'Nevermind'
+      replacement: '取消'
+
+# bookmarks/index.html
+- includes:
+    - bookmarks/index.html
+  items:
+    - expression: '<h2>Bookmarks</h2>'
+      replacement: '<h2>书签</h2>'
+    - expression: 'Tags'
+      replacement: '标签'
+
+# bookmarks/layout.html
+- includes:
+    - bookmarks/layout.html
+  items:
+    - expression: '<title>linkding</title>'
+      replacement: '<title>Linkding</title>'
+    - expression: 'Login'
+      replacement: '登录'
+
+# bookmarks/nav_menu.html
+- includes:
+    - bookmarks/nav_menu.html
+  items:
+    - expression: 'Add bookmark'
+      replacement: '添加书签'
+    - expression: 'Bookmarks'
+      replacement: '书签'
+    - expression: 'Active'
+      replacement: '活跃的'
+    - expression: 'Archived'
+      replacement: '已归档'
+    - expression: 'Shared'
+      replacement: '共享的'
+    - expression: 'Unread'
+      replacement: '未读的'
+    - expression: 'Untagged'
+      replacement: '无标签'
+    - expression: 'Settings'
+      replacement: '设置'
+    - expression: 'Logout'
+      replacement: '登出'
+
+# bookmarks/new.html
+- includes:
+    - bookmarks/new.html
+  items:
+    - expression: 'New bookmark'
+      replacement: '添加书签'
+
+# bookmarks/pagination.html
+- includes:
+    - bookmarks/pagination.html
+  items:
+    - expression: 'Previous'
+      replacement: '上一页'
+    - expression: 'Next'
+      replacement: '下一页'
+
+# bookmarks/read.html
+- includes:
+    - bookmarks/read.html
+  items:
+    - expression: 'Reader view'
+      replacement: '阅读器模式'
+
+# bookmarks/search.html
+- includes:
+    - bookmarks/search.html
+  items:
+    - expression: 'Search for words or #tags'
+      replacement: '搜索关键字或 #标签'
+    - expression: 'value="Search"'
+      replacement: 'value="搜索"'
+    - expression: 'Sort by'
+      replacement: '排序'
+    - expression: 'Shared filter'
+      replacement: '共享过滤'
+    - expression: 'Unread filter'
+      replacement: '未读过滤'
+    - expression: 'Apply'
+      replacement: '应用'
+    - expression: 'Save as default'
+      replacement: '保存为默认'
+
+# bookmarks/shared.html
+- includes:
+    - bookmarks/shared.html
+  items:
+    - expression: '<h2>Shared bookmarks</h2>'
+      replacement: '<h2>共享书签</h2>'
+    - expression: '<h2>User</h2>'
+      replacement: '<h2>用户</h2>'
+    - expression: 'Tags'
+      replacement: '标签'
+
+# bookmarks/tag_modal.html
+- includes:
+    - bookmarks/tag_modal.html
+  items:
+    - expression: 'Tags'
+      replacement: '标签'
+
+# bookmarks/user_select.html
+- includes:
+    - bookmarks/user_select.html
+  items:
+    - expression: 'Apply'
+      replacement: '应用'
+
+# bookmarks/bulk_edit
+
+# bookmarks/bulk_edit/bar.html
+- includes:
+    - bookmarks/bulk_edit/bar.html
+  items:
+    - expression: 'Archive'
+      replacement: '归档'
+    - expression: 'Unarchive'
+      replacement: '取消归档'
+    - expression: 'Delete'
+      replacement: '删除'
+    - expression: 'Add tags'
+      replacement: '添加标签'
+    - expression: 'Remove tags'
+      replacement: '移除标签'
+    - expression: 'Mark as read'
+      replacement: '标记为已读'
+    - expression: 'Mark as unread'
+      replacement: '标记为未读'
+    - expression: 'Share'
+      replacement: '共享'
+    - expression: 'Unshare'
+      replacement: '取消共享'
+    - expression: 'Tag names...'
+      replacement: '标签名称...'
+    - expression: 'Execute'
+      replacement: '执行'
+    - expression: 'All pages ('
+      replacement: '全部页（共'
+    - expression: ' bookmarks)'
+      replacement: '个书签）'
+
+# bookmarks/bulk_edit/toggle.html
+- includes:
+    - bookmarks/bulk_edit/toggle.html
+  items:
+    - expression: 'Bulk edit'
+      replacement: '批量编辑'
+
+# bookmarks/details
+
+# bookmarks/details/actions.html
+- includes:
+    - bookmarks/details/actions.html
+  items:
+    - expression: 'Edit'
+      replacement: '编辑'
+    - expression: 'Delete'
+      replacement: '删除'
+
+# bookmarks/details/assets.html
+- includes:
+    - bookmarks/details/assets.html
+  items:
+    - expression: 'View'
+      replacement: '查看'
+    - expression: 'Remove'
+      replacement: '删除'
+    - expression: 'Create HTML snapshot'
+      replacement: '创建HTML快照'
+    - expression: 'Upload file'
+      replacement: '上传文件'
+
+# bookmarks/details/form.html
+- includes:
+    - bookmarks/details/form.html
+  items:
+    - expression: 'Reader mode'
+      replacement: '阅读器模式'
+    - expression: 'Status'
+      replacement: '状态'
+    - expression: 'Archived'
+      replacement: '已归档'
+    - expression: 'Unread'
+      replacement: '未读'
+    - expression: 'Shared'
+      replacement: '共享的'
+    - expression: 'Files'
+      replacement: '文件'
+    - expression: 'Tags'
+      replacement: '标签'
+    - expression: 'Date added'
+      replacement: '添加时间'
+    - expression: 'Description'
+      replacement: '描述'
+    - expression: 'Notes'
+      replacement: '笔记'
+
+# django_registration
+
+# django_registration/registration_complete.html
+- includes:
+    - django_registration/registration_complete.html
+  items:
+    - expression: 'Registration complete. You can now use the application.'
+      replacement: '注册完成。您现在可以使用该应用程序。'
+
+# django_registration/registration_form.html
+- includes:
+    - django_registration/registration_form.html
+  items:
+    - expression: 'Register'
+      replacement: '注册'
+    - expression: 'Username'
+      replacement: '用户名'
+    - expression: 'Email'
+      replacement: '邮箱'
+    - expression: 'Password'
+      replacement: '密码'
+    - expression: 'Confirm Password'
+      replacement: '确认密码'
+
+# registration
+
+# registration/login.html
+- includes:
+    - registration/login.html
+  items:
+    - expression: '<h2>Login</h2>'
+      replacement: '<h2>登录</h2>'
+    - expression: "Your username and password didn't match. Please try again."
+      replacement: '您的用户名和密码不匹配，请重试。'
+    - expression: 'Username'
+      replacement: '用户名'
+    - expression: 'Password'
+      replacement: '密码'
+    - expression: 'value="Login"'
+      replacement: 'value="登录"'
+    - expression: 'Login with OIDC'
+      replacement: '通过OIDC登录'
+    - expression: 'Register'
+      replacement: '注册'
+
+# registration/password_change_done.html
+- includes:
+    - registration/password_change_done.html
+  items:
+    - expression: '<h2>Password Changed</h2>'
+      replacement: '<h2>密码已更改</h2>'
+    - expression: 'Your password was changed successfully.'
+      replacement: '您的密码已更改成功。'
+
+# registration/password_change_form.html
+- includes:
+    - registration/password_change_form.html
+  items:
+    - expression: '<h2>Change Password</h2>'
+      replacement: '<h2>更改密码</h2>'
+    - expression: 'Old password'
+      replacement: '旧密码'
+    - expression: 'New password'
+      replacement: '新密码'
+    - expression: 'Confirm new password'
+      replacement: '确认新密码'
+    - expression: 'value="Change Password"'
+      replacement: 'value="更改密码"'
+
+# settings
+
+# settings/general.html
+- includes:
+    - settings/general.html
+  items:
+    - expression: '<h2>Profile</h2>'
+      replacement: '<h2>主要</h2>'
+    - expression: 'Change password'
+      replacement: '更改密码'
+    - expression: 'Theme'
+      replacement: '主题'
+    - expression: "Whether to use a light or dark theme, or automatically adjust the theme based on your system's settings."
+      replacement: '使用浅色 <code>Light</code> 或深色 <code>Dark</code> 主题，或根据系统设置自动 <code>Auto</code> 调整主题。'
+    - expression: 'Bookmark date format'
+      replacement: '书签日期格式'
+    - expression: 'Whether to show bookmark dates as relative \(how long ago\)\, or as absolute dates. Alternatively the date can\s*\n*\s*be hidden\.'
+      expression-type: REGEXP
+      replacement: '是否显示书签日期为相对 <code>Relative</code> 时间（多久前），或绝对 <code>Absolute</code> 日期。或者可以隐藏 <code>Hidden</code> 日期。'
+    - expression: 'Bookmark\s*\n*\s*description<'
+      expression-type: REGEXP
+      replacement: '书签描述<'
+    - expression: 'Whether to show bookmark descriptions and tags in the same line, or as separate blocks.'
+      replacement: '是否在同一行中 <code>Inline</code> 显示书签描述和标签，或者作为单独的块 <code>Separate</code> 。'
+    - expression: 'Bookmark description\s*\n*\s*max lines'
+      expression-type: REGEXP
+      replacement: '书签描述最大行数'
+    - expression: 'Limits the number of lines that are displayed for the bookmark description.'
+      replacement: '限制显示书签描述的行数。'
+    - expression: 'Show bookmark URL'
+      replacement: '显示书签网址'
+    - expression: 'When enabled, this setting displays the bookmark URL below the title.'
+      replacement: '启用此设置后，将在标题下方显示书签网址。'
+    - expression: 'Show notes permanently'
+      replacement: '永久显示笔记'
+    - expression: 'Whether to show bookmark notes permanently, without having to toggle them individually.'
+      replacement: '是否永久显示书签笔记，而无需单独切换它们。'
+    - expression: 'Alternatively the keyboard shortcut <code>e</code> can be used to temporarily show all notes.'
+      replacement: '或者可以使用键盘快捷键 <code>e</code> 暂时显示所有笔记。'
+    - expression: 'Bookmark actions'
+      replacement: '书签操作'
+    - expression: '</i> View'
+      replacement: '</i> 查看'
+    - expression: '</i> Edit'
+      replacement: '</i> 编辑'
+    - expression: '</i> Archive'
+      replacement: '</i> 归档'
+    - expression: '</i> Remove'
+      replacement: '</i> 删除'
+    - expression: 'Which actions to display for each bookmark.'
+      replacement: '为每个书签显示的操作。'
+    - expression: 'Open bookmarks in'
+      replacement: '如何打开书签'
+    - expression: 'Whether to open bookmarks a new page or in the same page.'
+      replacement: '是否在新页面 <code>New page</code> 或同一页面 <code>Same page</code> 中打开书签。'
+    - expression: 'Items per page'
+      replacement: '每页显示项目'
+    - expression: 'The number of bookmarks to display per page.'
+      replacement: '每页显示的书签数量。'
+    - expression: 'Sticky pagination'
+      replacement: '固定分页'
+    - expression: 'When enabled\, the pagination controls will stick to the bottom of the screen\, so that they are always\s*\n*\s*visible without having to scroll to the end of the page first\.'
+      expression-type: REGEXP
+      replacement: '启用此设置后，分页控件将固定在屏幕底部，以便始终可见，而无需首先滚动到页面末尾。'
+    - expression: 'Tag search'
+      replacement: '标签搜索'
+    - expression: 'In strict mode, tags must be prefixed with a hash character (#).'
+      replacement: '在严格模式 <code>Strict</code> 下，标签必须以 <code>#</code> 开头。'
+    - expression: 'In lax mode, tags can also be searched without the hash character.'
+      replacement: '在宽松模式 <code>Lax</code> 下，也可以搜索不包含 <code>#</code> 的标签。'
+    - expression: 'Note that tags without the hash character are indistinguishable from search terms\, which means the search\s*\n*\s*result will also include bookmarks where a search term matches otherwise\.'
+      expression-type: REGEXP
+      replacement: '注意，不包含 <code>#</code> 的标签与搜索术语是不可区分的，这意味着搜索结果也将包括其他情况下搜索术语匹配的书签。'
+    - expression: 'Tag grouping'
+      replacement: '标签分组'
+    - expression: 'In alphabetical mode, tags will be grouped by the first letter.'
+      replacement: '在按字母顺序排列模式 <code>Alphabetical</code> 下，标签将按首字母分组。'
+    - expression: 'If disabled, tags will not be grouped.'
+      replacement: '如果禁用，标签将不会分组。'
+    - expression: '>Auto Tagging<'
+      replacement: '>自动标签<'
+    - expression: 'Automatically adds tags to bookmarks based on predefined rules.'
+      replacement: '根据预定义规则自动为书签添加标签。'
+    - expression: 'Each line is a single rule that maps a URL to one or more tags. For example:'
+      replacement: '每行一个规则，它将 URL 映射到一个或多个标签。例如：'
+    - expression: 'video'
+      replacement: '视频'
+    - expression: 'music'
+      replacement: '音乐'
+    - expression: 'Enable Favicons'
+      replacement: '启用图标'
+    - expression: 'Automatically loads favicons for bookmarked websites and displays them next to each bookmark.'
+      replacement: '自动加载书签网站的图标，并将它们显示在每个书签旁边。'
+    - expression: 'Enabling this feature automatically downloads all missing favicons.'
+      replacement: '启用此功能时，将自动下载所有缺失的图标。'
+    - expression: 'By default, this feature uses a <b>Google service</b> to download favicons.'
+      replacement: '默认情况下，此功能使用 <b>Google 服务</b> 下载图标。'
+    - expression: "If you don't want to use this service, check the"
+      replacement: '如果不想使用此服务，请点击'
+    - expression: 'options documentation'
+      replacement: '配置文档'
+    - expression: 'on how to configure a custom favicon provider.'
+      replacement: '查看如何配置自定义图标提供程序。'
+    - expression: 'Icons are downloaded in the background, and it may take a while for them to show up.'
+      replacement: '图标在后台下载，可能需要一些时间才能显示出来。'
+    - expression: 'Refresh Favicons'
+      replacement: '刷新图标'
+    - expression: 'Enable Preview Images'
+      replacement: '启用预览图'
+    - expression: 'Automatically loads preview images for bookmarked websites and displays them next to each bookmark.'
+      replacement: '自动加载书签网站的预览图，并将它们显示在每个书签旁边。'
+    - expression: 'Enabling this feature automatically downloads all missing preview images.'
+      replacement: '启用此功能时，将自动下载所有缺失的预览图。'
+    - expression: 'Internet Archive\s*\n*\s*integration'
+      expression-type: REGEXP
+      replacement: '集成互联网档案馆'
+    - expression: 'Enabling this feature will automatically create snapshots of bookmarked websites on the'
+      replacement: '启用此功能将自动在'
+    - expression: 'Machine</a>.'
+      replacement: 'Machine</a> 上创建书签网站的快照。'
+    - expression: 'This allows to preserve\, and later access the website as it was at the point in time it was bookmarked\, in\s*\n*\s*case it goes offline or its content is modified\.'
+      expression-type: REGEXP
+      replacement: '这允许保留并稍后访问网站，就像它被书签时一样，以防它脱机或其内容被修改。'
+    - expression: 'Please consider donating to the <a href="https://archive\.org/donate" target="_blank"\s*\n*\s*rel="noopener">Internet Archive</a> if you make use of this feature\.'
+      expression-type: REGEXP
+      replacement: '如果您使用此功能，请考虑向 <a href="https://archive.org/donate" target="_blank" rel="noopener">Internet Archive</a> 捐款。'
+    - expression: 'Enable bookmark sharing'
+      replacement: '启用书签共享'
+    - expression: 'Allows to share bookmarks with other users, and to view shared bookmarks.'
+      replacement: '允许与其他用户共享书签，并查看共享书签。'
+    - expression: 'Disabling this feature will hide all previously shared bookmarks from other users.'
+      replacement: '禁用此功能将隐藏其他用户以前共享的书签。'
+    - expression: 'Enable public bookmark sharing'
+      replacement: '启用公开书签共享'
+    - expression: 'Makes shared bookmarks publicly accessible, without requiring a login.'
+      replacement: '使共享书签公开可访问，无需登录。'
+    - expression: 'That means that anyone with a link to this instance can view shared bookmarks via the'
+      replacement: '这意味着任何链接到此实例的人都可以通过'
+    - expression: 'shared bookmarks page</a>.'
+      replacement: '共享书签页面</a> 查看共享书签。'
+    - expression: 'Automatically create HTML snapshots'
+      replacement: '自动创建 HTML 快照'
+    - expression: 'Automatically creates HTML snapshots when adding bookmarks. Alternatively\, when disabled, snapshots can be\s*\n*\s*created manually in the details view of a bookmark\.'
+      expression-type: REGEXP
+      replacement: '自动创建书签时的 HTML 快照。或者，当禁用时，快照可以手动在书签的详细视图中创建。'
+    - expression: 'Create missing HTML snapshots'
+      replacement: '创建缺失的 HTML 快照'
+    - expression: 'Create bookmarks as unread by default'
+      replacement: '默认创建未读书签'
+    - expression: 'Sets the default state for the "Mark as unread" option when creating a new bookmark.'
+      replacement: '在创建新书签时，设置“标记为未读”选项的默认状态。'
+    - expression: 'Setting this option will make all new bookmarks default to unread.'
+      replacement: '设置此选项将使所有新书签默认为未读。'
+    - expression: 'This can be overridden when creating each new bookmark.'
+      replacement: '可以在创建每个新书签时覆盖此选项。'
+    - expression: '>Custom CSS<'
+      replacement: '>自定义 CSS<'
+    - expression: 'Allows to add custom CSS to the page.'
+      replacement: '允许向页面添加自定义 CSS。'
+    - expression: 'value="Save"'
+      replacement: 'value="保存"'
+    # Global settings
+    - expression: '<h2>Global settings</h2>'
+      replacement: '<h2>全局设置</h2>'
+    - expression: 'Landing page'
+      replacement: '首页'
+    - expression: 'The page that unauthenticated users are redirected to when accessing the root URL.'
+      replacement: '未认证用户访问根 URL 时重定向到的页面。'
+    - expression: 'Guest user\s*\n*\s*profile'
+      expression-type: REGEXP
+      replacement: '访客用户配置'
+    - expression: 'The user profile to use for users that are not logged in\. This will affect how publicly shared bookmarks\s*\n*\s*are displayed regarding theme\, bookmark list settings\, etc\. You can either use your own profile or create\s*\n*\s*a dedicated user for this purpose\. By default\, a standard profile with fixed settings is used\.'
+      expression-type: REGEXP
+      replacement: '未登录用户使用的用户配置。这将影响公共共享书签的主题、书签列表设置等方面的显示方式。您可以使用自己的配置文件，或者创建专门用于此目的的用户。默认情况下，使用具有固定设置的标准配置文件。'
+    - expression: 'Enable prefetching links on hover'
+      replacement: '悬停时预取链接'
+    - expression: 'Prefetches internal links when hovering over them\. This can improve the perceived performance when\s*\n*\s*navigating application\, but also increases the load on the server as well as bandwidth usage\.'
+      expression-type: REGEXP
+      replacement: '在悬停时预取内部链接。这可以提高导航应用程序时的感知性能，但也会增加服务器的负载以及带宽使用量。'
+    - expression: '<h2>Import</h2>'
+      replacement: '<h2>导入</h2>'
+    - expression: 'Import bookmarks and tags in the Netscape HTML format\. This will execute a sync where new bookmarks are\s*\n*\s*added and existing ones are updated\.'
+      expression-type: REGEXP
+      replacement: '以 Netscape HTML 格式导入书签和标签。这将执行同步，其中新书签将被添加，而现有书签将被更新。'
+    - expression: 'Import public bookmarks as shared'
+      replacement: '导入公共书签作为共享'
+    - expression: 'When importing bookmarks from a service that supports marking bookmarks as public or private \(using the\s*\n*\s*<code>PRIVATE</code> attribute\)\, enabling this option will import all bookmarks that are marked as not\s*\n*\s*private as shared bookmarks\.'
+      expression-type: REGEXP
+      replacement: '当从支持将书签标记为公共或私有（使用<code>PRIVATE</code>属性）的服务导入书签时，启用此选项将导入所有标记为非私有书签的共享书签。'
+    - expression: 'Otherwise, all bookmarks will be imported as private bookmarks.'
+      replacement: '否则，所有书签将被导入为私有书签。'
+    - expression: 'value="Upload"'
+      replacement: 'value="上传"'
+    - expression: '<h2>Export</h2>'
+      replacement: '<h2>导出</h2>'
+    - expression: 'Export all bookmarks in Netscape HTML format.'
+      replacement: '以 Netscape HTML 格式导出所有书签。'
+    - expression: 'Download'
+      replacement: '下载'
+    - expression: '<h2>About</h2>'
+      replacement: '<h2>关于</h2>'
+    - expression: 'Version'
+      replacement: '版本'
+    - expression: 'Links'
+      replacement: '链接'
+    - expression: 'Documentation'
+      replacement: '文档'
+    - expression: 'Changelog'
+      replacement: '更新日志'
+    # 添加汉化声明
+    - expression: '</tbody>'
+      replacement: '<tr><td>汉化</td><td><a href="https://github.com/hotlcc" target="_blank">@hotlcc</a></td></tr></tbody>'
+
+# settings/integrations.html
+- includes:
+    - settings/integrations.html
+  items:
+    - expression: 'Browser Extension'
+      replacement: '浏览器扩展'
+    - expression: 'The browser extension allows you to quickly add new bookmarks without leaving the page that you are on\. The\s*\n*\s*extension is available in the official extension stores for:'
+      expression-type: REGEXP
+      replacement: '浏览器扩展允许您快速添加新书签，而无需离开您所在的页面。扩展可在官方扩展商店中获得：'
+    - expression: 'The extension is'
+      replacement: '该扩展程序也是'
+    - expression: 'open source'
+      replacement: '开源的'
+    - expression: 'as well, which enables you to build and manually load it into any browser that supports Chrome extensions.'
+      replacement: '。这使您能够构建并手动将其加载到任何支持 Chrome 扩展的浏览器中。'
+    - expression: 'Bookmarklet'
+      replacement: '小书签'
+    - expression: "The bookmarklet is an alternative\\, cross-browser way to quickly add new bookmarks without opening the linkding application\\s*\\n*\\s*first\\. Here's how it works:"
+      expression-type: REGEXP
+      replacement: '小书签是一种跨浏览器的快速添加新书签的方法，无需首先打开链接目录应用程序。它的工作原理如下：'
+    - expression: 'Drag the bookmarklet below into your browsers bookmark bar / toolbar'
+      replacement: '将小书签拖放到浏览器的“书签栏 / 工具栏”中'
+    - expression: 'Open the website that you want to bookmark'
+      replacement: '打开要添加为书签的网站'
+    - expression: 'Click the bookmarklet in your browsers toolbar'
+      replacement: '在浏览器工具栏中单击小书签'
+    - expression: 'linkding opens in a new window or tab and allows you to add a bookmark for the site'
+      replacement: '会在新窗口或选项卡中打开Linkding，并允许您为该站点添加书签'
+    - expression: 'After saving the bookmark the linkding window closes and you are back on your website'
+      replacement: '保存书签后，链接目录窗口关闭，您将回到您的网站'
+    - expression: "Drag the following bookmarklet to your browsers toolbar:"
+      replacement: '将以下小书签拖放到浏览器的工具栏中：'
+    - expression: 'Add bookmark'
+      replacement: '添加书签'
+    - expression: 'The following token can be used to authenticate 3rd-party applications against the REST API:'
+      replacement: '以下令牌可用于第三方应用程序对 REST API 进行身份验证：'
+    - expression: 'Please treat this token as you would any other credential.'
+      replacement: '请像对待其他凭证一样对待此令牌。'
+    - expression: 'Any party with access to this token can access and manage all your bookmarks.'
+      replacement: '任何拥有此令牌的各方都可以访问和管理您的所有书签。'
+    - expression: 'If you think that a token was compromised you can revoke (delete) it in the'
+      replacement: '如果您认为令牌已被泄露，您可以在'
+    - expression: '>admin panel</a>.'
+      replacement: '>管理面板</a> 中删除令牌。'
+    - expression: 'After deleting the token, a new one will be generated when you reload this settings page.'
+      replacement: '删除令牌后，当您重新加载此设置页面时，将生成一个新的令牌。'
+    - expression: 'RSS Feeds'
+      replacement: 'RSS 订阅'
+    - expression: 'The following URLs provide RSS feeds for your bookmarks:'
+      replacement: '以下 URL 提供了书签的 RSS 订阅：'
+    - expression: 'All bookmarks'
+      replacement: '全部书签'
+    - expression: 'Unread bookmarks'
+      replacement: '未读书签'
+    - expression: 'Shared bookmarks'
+      replacement: '共享书签'
+    - expression: 'Public shared bookmarks'
+      replacement: '公开共享书签'
+    - expression: 'The public shared feed does not contain an authentication token and can be shared with other people. Only shows shared bookmarks from users who have explicitly enabled public sharing.'
+      replacement: '公共共享订阅不包含身份验证令牌，可以与其他人共享。仅显示来自已显式启用公共共享的用户的共享书签。'
+    - expression: 'All URLs support appending a <code>q</code> URL parameter for specifying a search query.'
+      replacement: '所有 URL 都支持附加 <code>q</code> URL 参数以指定搜索查询。'
+    - expression: 'You can get an example by doing a search in the bookmarks view and then copying the parameter from the URL.'
+      replacement: '您可以通过在书签视图中执行搜索，然后从 URL 中复制参数来获取示例。'
+    - expression: 'Please note that these URLs include an authentication token that should be treated like any other\s*\n*\s*credential\.'
+      expression-type: REGEXP
+      replacement: '请注意，这些 URL 包含身份验证令牌，应像任何其他凭证一样对待。'
+    - expression: 'Any party with access to these URLs can read all your bookmarks.'
+      replacement: '任何拥有这些 URL 的各方都可以读取所有您的书签。'
+    - expression: 'If you think that a URL was compromised you can delete the feed token for your user in the'
+      replacement: '如果您认为 URL 已被泄露，您可以在'
+    - expression: 'After deleting the feed token, new URLs will be generated when you reload this settings page.'
+      replacement: '删除订阅令牌后，当您重新加载此设置页面时，将生成新的 URL。'
+
+# settings/nav.html
+- includes:
+    - settings/nav.html
+  items:
+    - expression: 'General'
+      replacement: '通用'
+    - expression: 'Integrations'
+      replacement: '集成'
+    - expression: 'Admin'
+      replacement: '管理'
+    - expression: 'The admin panel provides additional features &#010; such as user management and bulk operations.'
+      replacement: '管理面板提供了额外的功能，&#010;例如用户管理和批量操作。'

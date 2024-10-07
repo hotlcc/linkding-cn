@@ -1,0 +1,69 @@
+{% extends "bookmarks/layout.html" %}
+
+{% block content %}
+    <div class="settings-page">
+
+        {% include 'settings/nav.html' %}
+
+        <section class="content-area">
+            <h2>浏览器扩展</h2>
+            <p>浏览器扩展允许您快速添加新书签，而无需离开您所在的页面。扩展可在官方扩展商店中获得：</p>
+            <ul>
+                <li><a href="https://addons.mozilla.org/firefox/addon/linkding-extension/" target="_blank">Firefox</a></li>
+                <li><a href="https://chrome.google.com/webstore/detail/linkding-extension/beakmhbijpdhipnjhnclmhgjlddhidpe" target="_blank">Chrome</a></li>
+            </ul>
+            <p>该扩展程序也是 <a href="https://github.com/sissbruecker/linkding-extension" target="_blank">开源的</a> 。这使您能够构建并手动将其加载到任何支持 Chrome 扩展的浏览器中。</p>
+            <h2>小书签</h2>
+            <p>小书签是一种跨浏览器的快速添加新书签的方法，无需首先打开链接目录应用程序。它的工作原理如下：</p>
+            <ul>
+                <li>将小书签拖放到浏览器的“书签栏 / 工具栏”中</li>
+                <li>打开要添加为书签的网站</li>
+                <li>在浏览器工具栏中单击小书签</li>
+                <li>会在新窗口或选项卡中打开Linkding，并允许您为该站点添加书签</li>
+                <li>保存书签后，链接目录窗口关闭，您将回到您的网站</li>
+            </ul>
+            <p>将以下小书签拖放到浏览器的工具栏中：</p>
+            <a href="javascript: {% include 'bookmarks/bookmarklet.js' %}"
+               class="btn btn-primary">📎 添加书签</a>
+        </section>
+
+        <section class="content-area">
+            <h2>REST API</h2>
+            <p>以下令牌可用于第三方应用程序对 REST API 进行身份验证：</p>
+            <div class="form-group">
+                <div class="columns">
+                    <div class="column width-50 width-md-100">
+                        <input class="form-input" value="{{ api_token }}" readonly>
+                    </div>
+                </div>
+            </div>
+            <p>
+              <strong>请像对待其他凭证一样对待此令牌。</strong>
+              任何拥有此令牌的各方都可以访问和管理您的所有书签。
+              如果您认为令牌已被泄露，您可以在 <a href="{% url 'admin:authtoken_tokenproxy_changelist' %}">管理面板</a> 中删除令牌。
+              删除令牌后，当您重新加载此设置页面时，将生成一个新的令牌。
+            </p>
+        </section>
+
+        <section class="content-area">
+            <h2>RSS 订阅</h2>
+            <p>以下 URL 提供了书签的 RSS 订阅：</p>
+            <ul style="list-style-position: outside;">
+              <li><a href="{{ all_feed_url }}">全部书签</a></li>
+              <li><a href="{{ unread_feed_url }}">未读书签</a></li>
+              <li><a href="{{ shared_feed_url }}">共享书签</a></li>
+              <li><a href="{{ public_shared_feed_url }}">公开共享书签</a><br><span class="text-small text-gray">公共共享订阅不包含身份验证令牌，可以与其他人共享。仅显示来自已显式启用公共共享的用户的共享书签。</span></li>
+            </ul>
+            <p>
+              所有 URL 都支持附加 <code>q</code> URL 参数以指定搜索查询。
+              您可以通过在书签视图中执行搜索，然后从 URL 中复制参数来获取示例。
+            </p>
+            <p>
+              <strong>请注意，这些 URL 包含身份验证令牌，应像任何其他凭证一样对待。</strong>
+              任何拥有这些 URL 的各方都可以读取所有您的书签。
+              如果您认为 URL 已被泄露，您可以在 <a href="{% url 'admin:bookmarks_feedtoken_changelist' %}">管理面板</a> 中删除令牌。
+              删除订阅令牌后，当您重新加载此设置页面时，将生成新的 URL。
+            </p>
+        </section>
+    </div>
+{% endblock %}

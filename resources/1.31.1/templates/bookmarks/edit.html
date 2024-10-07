@@ -1,0 +1,14 @@
+{% extends 'bookmarks/layout.html' %}
+{% load bookmarks %}
+
+{% block content %}
+  <section class="content-area">
+    <div class="content-area-header">
+      <h2>编辑书签</h2>
+    </div>
+    <form action="{% url 'bookmarks:edit' bookmark_id %}?return_url={{ return_url|urlencode }}" method="post"
+          class="width-50 width-md-100" novalidate>
+      {% bookmark_form form return_url bookmark_id %}
+    </form>
+  </section>
+{% endblock %}

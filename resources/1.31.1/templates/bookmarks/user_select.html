@@ -1,0 +1,22 @@
+{% load widget_tweaks %}
+
+<form id="user-select" action="" method="get">
+  {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field }}
+  {% endfor %}
+  <div class="form-group">
+    <div class="d-flex">
+      {{ form.user|add_class:"form-select" }}
+      <noscript>
+        <button type="submit" class="btn btn-link ml-2">应用</button>
+      </noscript>
+    </div>
+  </div>
+</form>
+<script>
+  const form = document.getElementById('user-select');
+  const select = form.querySelector('select');
+  select.addEventListener('change', () => {
+    form.submit();
+  });
+</script>
