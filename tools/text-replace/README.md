@@ -48,4 +48,4 @@ sh text-replace.sh -i [输入目录] -o [输出目录] -r [规则文件]
 - `items.expression-type`：匹配表达式类型，非必须。可以是 `TEXT` 或者 `REGEXP`，缺省时为 `TEXT`。
 - `items.replacement`：替换内容
 
-更多示例参考：resources/版本/text-replace.yml
+更多示例参考：resources/版本/*.yml
