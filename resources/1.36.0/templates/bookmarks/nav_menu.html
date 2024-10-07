@@ -1,0 +1,83 @@
+{% load shared %}
+{% htmlmin %}
+  {# Basic menu list #}
+  <div class="hide-md">
+    <a href="{% url 'bookmarks:new' %}" class="btn btn-primary mr-2">添加书签</a>
+    <div class="dropdown">
+      <button class="btn btn-link dropdown-toggle" tabindex="0">
+        书签
+      </button>
+      <ul class="menu">
+        <li class="menu-item">
+          <a href="{% url 'bookmarks:index' %}" class="menu-link">活跃的</a>
+        </li>
+        <li class="menu-item">
+          <a href="{% url 'bookmarks:archived' %}" class="menu-link">已归档</a>
+        </li>
+        {% if request.user_profile.enable_sharing %}
+          <li class="menu-item">
+            <a href="{% url 'bookmarks:shared' %}" class="menu-link">共享的</a>
+          </li>
+        {% endif %}
+        <li class="menu-item">
+          <a href="{% url 'bookmarks:index' %}?unread=yes" class="menu-link">未读的</a>
+        </li>
+        <li class="menu-item">
+          <a href="{% url 'bookmarks:index' %}?q=!untagged" class="menu-link">无标签</a>
+        </li>
+      </ul>
+    </div>
+    <a href="{% url 'bookmarks:settings.index' %}" class="btn btn-link">设置</a>
+    <form class="d-inline" action="{% url 'logout' %}" method="post">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-link">登出</button>
+    </form>
+  </div>
+  {# Menu drop-down for smaller devices #}
+  <div class="show-md">
+    <a href="{% url 'bookmarks:new' %}" class="btn btn-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+           style="width: 24px; height: 24px">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+      </svg>
+    </a>
+    <div ld-dropdown class="dropdown dropdown-right">
+      <button class="btn btn-link dropdown-toggle" tabindex="0">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+             style="width: 24px; height: 24px">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+      <!-- menu component -->
+      <ul class="menu">
+        <li class="menu-item">
+          <a href="{% url 'bookmarks:index' %}" class="menu-link">书签</a>
+        </li>
+        <li class="menu-item">
+          <a href="{% url 'bookmarks:archived' %}" class="menu-link">已归档</a>
+        </li>
+        {% if request.user_profile.enable_sharing %}
+          <li class="menu-item">
+            <a href="{% url 'bookmarks:shared' %}" class="menu-link">共享的</a>
+          </li>
+        {% endif %}
+        <li class="menu-item">
+          <a href="{% url 'bookmarks:index' %}?unread=yes" class="menu-link">未读的</a>
+        </li>
+        <li class="menu-item">
+          <a href="{% url 'bookmarks:index' %}?q=!untagged" class="menu-link">无标签</a>
+        </li>
+        <div class="divider"></div>
+        <li class="menu-item">
+          <a href="{% url 'bookmarks:settings.index' %}" class="menu-link">设置</a>
+        </li>
+        <li class="menu-item">
+          <form class="d-inline" action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-link menu-link">登出</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+{% endhtmlmin %}
