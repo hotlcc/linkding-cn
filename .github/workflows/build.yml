@@ -75,6 +75,7 @@ jobs:
           zip_file=${LINKDING_TEMP_DIR}/linkding-${VERSION}.zip
           wget ${LINKDING_RELEASE_ZIP_URL} -O ${zip_file}
           unzip ${zip_file} -d ${LINKDING_TEMP_DIR}
+          echo "======> Linkding 原始资源下载并解压完毕"
       - name: 生成模板文件
         if: env.TEMPLATES_DIR_EXIST != 'true'
         run: |
@@ -94,6 +95,7 @@ jobs:
           ls -al
           docker build -t ${BUILD_IMAGE_TAG} .
           rm -rf Dockerfile
+          echo "======> Docker 镜像构建完毕"
           ls -al
           docker images
           # test
