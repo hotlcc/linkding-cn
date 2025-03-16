@@ -16,23 +16,52 @@ jobs:
       - name: 准备Release变量
         run: |
           cat .release.env >> $GITHUB_ENV
+          echo "VERSION_DIR=resources/${VERSION}" >> $GITHUB_ENV
+          mkdir -p "${VERSION_DIR}"
+          echo "TEMPLATES_DIR=${VERSION_DIR}/templates" >> $GITHUB_ENV
+          if [ -d "${TEMPLATES_DIR}" ]; then
+            echo "TEMPLATES_DIR_EXIST=true" >> $GITHUB_ENV
+            echo "======> 资源目录已经存在"
+          fi
+          echo "RULE_PATH=${VERSION_DIR}/templates.yml" >> $GITHUB_ENV
+          if [ -f "${RULE_PATH}" ]; then
+            echo "RULE_PATH_EXIST=true" >> $GITHUB_ENV
+            echo "======> 规则文件已经存在"
+          fi
+          echo "LINKDING_TEMP_DIR=${TMPDIR}/linkding" >> $GITHUB_ENV
           echo "======> Release变量准备完毕"
       - name: 生成规则文件
+        if: env.RULE_PATH_EXIST != 'true'
         run: |
-          templates_rule_file_dir="resources/${VERSION}"
-          templates_rule_file_path="${templates_rule_file_dir}/templates.yml"
-          if [ -f "${templates_rule_file_path}" ]; then
-            echo "======> 规则文件已经存在"
-            exit
-          fi
           #sudo apt-get update
           #sudo apt-get install gettext
-          mkdir -p ${templates_rule_file_dir}
-          envsubst < src/templates-replace/rule.tpl.yml > ${templates_rule_file_path}
+          envsubst < src/templates-replace/rule.tpl.yml > ${RULE_PATH}
           git add .
           git commit -m "生成规则文件"
           git push
           echo "======> 规则文件生成完毕"
+      - name: 设置 JRE 运行环境
+        if: env.TEMPLATES_DIR_EXIST != 'true'
+        uses: actions/setup-java@v3
+        with:
+          distribution: adopt
+          java-version: 8
+          cache: maven
+      - name: 下载Linkding资源
+        if: env.TEMPLATES_DIR_EXIST != 'true'
+        run: |
+          mkdir -p ${LINKDING_TEMP_DIR}
+          cd ${LINKDING_TEMP_DIR}
+          wget https://github.com/sissbruecker/linkding/archive/refs/tags/v${VERSION}.zip
+          unzip linkding-${VERSION}.zip
+      - name: 生成模板文件
+        if: env.TEMPLATES_DIR_EXIST != 'true'
+        run: |
+          sh tools/text-replace/text-replace.sh -i ${LINKDING_TEMP_DIR}/linkding-${VERSION}/bookmarks/templates -o ${TEMPLATES_DIR} -r ${RULE_PATH}
+          git add .
+          git commit -m "生成模板文件"
+          git push
+          echo "======> 模板文件生成完毕"
 
 
 
