@@ -96,12 +96,10 @@ jobs:
           echo "======> Docker 镜像构建完毕"
           docker images
           # test
-          echo 11111111
           docker run --rm -d --name linkding ${BUILD_IMAGE_TAG}
-          echo 2222222
-          docker exec -it linkding ls /etc/linkding/bookmarks/
+          docker exec linkding ls /etc/linkding/bookmarks/
           echo 33333333
-          docker exec -it linkding cat /etc/linkding/bookmarks/templates/admin/background_tasks.html
+          docker exec linkding cat /etc/linkding/bookmarks/templates/admin/background_tasks.html
           echo 44444444
 
 
