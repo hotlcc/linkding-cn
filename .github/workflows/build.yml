@@ -87,7 +87,7 @@ jobs:
         run: |
           docker build -t ${BUILD_IMAGE_TAG} - <<EOF
           FROM ${FROM_IMAGE_TAG}
-          COPY resources/${VERSION}/templates /etc/linkding/bookmarks/
+          COPY ./resources/${VERSION}/templates /etc/linkding/bookmarks/
           CMD ["./bootstrap.sh"]
           EOF
           # test
