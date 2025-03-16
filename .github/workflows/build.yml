@@ -63,7 +63,6 @@ jobs:
         with:
           distribution: adopt
           java-version: 8
-          cache: maven
       - name: 下载Linkding资源
         if: env.TEMPLATES_DIR_EXIST != 'true'
         run: |
