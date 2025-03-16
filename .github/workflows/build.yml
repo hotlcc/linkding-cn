@@ -45,6 +45,12 @@ jobs:
           LINKDING_RELEASE_ZIP_URL=https://github.com/sissbruecker/linkding/archive/refs/tags/v${VERSION}.zip
           echo "LINKDING_RELEASE_ZIP_URL=${LINKDING_RELEASE_ZIP_URL}" >> $GITHUB_ENV
 
+          FROM_IMAGE_TAG=sissbruecker/linkding:${VERSION}
+          echo "FROM_IMAGE_TAG=${FROM_IMAGE_TAG}" >> $GITHUB_ENV
+
+          BUILD_IMAGE_TAG=hotlcc/linkding-cn:${VERSION}
+          echo "BUILD_IMAGE_TAG=${BUILD_IMAGE_TAG}" >> $GITHUB_ENV
+
           echo "======> Release变量准备完毕"
       - name: 生成规则文件
         if: env.RULE_PATH_EXIST != 'true'
@@ -63,7 +69,7 @@ jobs:
         with:
           distribution: adopt
           java-version: 8
-      - name: 下载Linkding资源
+      - name: 下载 Linkding 原始资源
         if: env.TEMPLATES_DIR_EXIST != 'true'
         run: |
           zip_file=${LINKDING_TEMP_DIR}/linkding-${VERSION}.zip
@@ -77,7 +83,17 @@ jobs:
           git commit -m "生成模板文件"
           git push
           echo "======> 模板文件生成完毕"
-
+      - name: 构建 Docker 镜像
+        run: |
+          docker build -t ${BUILD_IMAGE_TAG} - << EOF
+          FROM ${FROM_IMAGE_TAG}
+          COPY resources/${VERSION/templates /etc/linkding/bookmarks/
+          CMD ["./bootstrap.sh"]
+          EOF
+          # test
+          docker run --rm -d --name linkding ${BUILD_IMAGE_TAG}
+          docker exec -it linkding ls /etc/linkding/bookmarks/
+          docker exec -it linkding cat /etc/linkding/bookmarks/templates/admin/background_tasks.html
 
 
 
