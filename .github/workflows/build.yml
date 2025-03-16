@@ -21,6 +21,7 @@ jobs:
           echo "======> Release变量准备完毕"
       - name: 生成规则文件
         run: |
+          echo 1111111111:${VERSION}
           templates_rule_file="resources/${VERSION}/templates.yml"
           if [ -f "${templates_rule_file}" ]; then
             echo "======> 规则文件已经存在"
