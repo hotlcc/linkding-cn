@@ -28,7 +28,7 @@ jobs:
           #sudo apt-get update
           #sudo apt-get install gettext
           mkdir -p ${templates_rule_file_dir}
-          envsubst < src/templates-replace/rule.tpl.yml > ${templates_rule_file_path}
+          #envsubst < src/templates-replace/rule.tpl.yml > ${templates_rule_file_path}
           git add .
           git commit -m "生成规则文件"
           git push
