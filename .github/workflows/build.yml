@@ -90,18 +90,13 @@ jobs:
           FROM ${FROM_IMAGE_TAG}
           COPY resources/${VERSION}/templates /etc/linkding/bookmarks/
           CMD ["./bootstrap.sh"]
-          " > Dockerfile
-          docker build -t ${BUILD_IMAGE_TAG} .
-          rm -rf Dockerfile
+          " | docker build -t ${BUILD_IMAGE_TAG} . -
           echo "======> Docker 镜像构建完毕"
           docker images
-          # test
-          docker run -d --name linkding ${BUILD_IMAGE_TAG}
-          docker exec linkding ls /etc/linkding/bookmarks/
-          echo 33333333
-          docker exec linkding cat /etc/linkding/bookmarks/templates/admin/background_tasks.html
-          echo 44444444
-          docker stop linkding
+      - name: 上传镜像
+        run: |
+          
+
 
 
 
