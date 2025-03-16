@@ -68,12 +68,12 @@ jobs:
         run: |
           zip_file=${LINKDING_TEMP_DIR}/v${VERSION}.zip
           wget ${LINKDING_RELEASE_ZIP_URL} -o ${zip_file}
-          unzip ${zip_file} -d ${LINKDING_TEMP_DIR}
+          unzip ${zip_file}
           ls -al
       - name: 生成模板文件
         if: env.TEMPLATES_DIR_EXIST != 'true'
         run: |
-          sh tools/text-replace/text-replace.sh -i ${LINKDING_TEMP_DIR}/linkding-${VERSION}/bookmarks/templates -o ${TEMPLATES_DIR} -r ${RULE_PATH}
+          sh tools/text-replace/text-replace.sh -i ${LINKDING_TEMP_DIR}/${VERSION}/bookmarks/templates -o ${TEMPLATES_DIR} -r ${RULE_PATH}
           git add .
           git commit -m "生成模板文件"
           git push
