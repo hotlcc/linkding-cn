@@ -66,9 +66,10 @@ jobs:
       - name: 下载Linkding资源
         if: env.TEMPLATES_DIR_EXIST != 'true'
         run: |
-          cd ${LINKDING_TEMP_DIR}
-          wget ${LINKDING_RELEASE_ZIP_URL}
-          unzip linkding-${VERSION}.zip
+          zip_file=${LINKDING_TEMP_DIR}/v${VERSION}.zip
+          wget ${LINKDING_RELEASE_ZIP_URL} -o ${zip_file}
+          unzip ${zip_file} -d ${LINKDING_TEMP_DIR}
+          ls -al
       - name: 生成模板文件
         if: env.TEMPLATES_DIR_EXIST != 'true'
         run: |
