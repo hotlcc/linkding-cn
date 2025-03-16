@@ -48,7 +48,7 @@ jobs:
           FROM_IMAGE_TAG=sissbruecker/linkding:${VERSION}
           echo "FROM_IMAGE_TAG=${FROM_IMAGE_TAG}" >> $GITHUB_ENV
 
-          BUILD_IMAGE_TAG=hotlcc/linkding-cn:${VERSION}
+          BUILD_IMAGE_TAG=${{ secrets.DOCKER_HUB_USERNAME }}/linkding-cn:${VERSION}
           echo "BUILD_IMAGE_TAG=${BUILD_IMAGE_TAG}" >> $GITHUB_ENV
 
           echo "======> Release变量准备完毕"
@@ -97,7 +97,7 @@ jobs:
           docker images
       - name: 上传镜像到 Docker Hub
         run: |
-          docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}
+          docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
           docker push ${BUILD_IMAGE_TAG}
           echo "======> Docker 镜像上传完毕"
           docker logout
