@@ -15,18 +15,19 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
       - name: 准备Release变量
         run: |
-          cat .release.env >> $GITHUB_ENV
+          cat .release.env >> $GITHUB_ENV | cat
           echo "======> Release变量准备完毕"
       - name: 生成规则文件
         run: |
-          echo 1111111111:${VERSION}
-          templates_rule_file="resources/${VERSION}/templates.yml"
+          templates_rule_file_dir="resources/${VERSION}
+          templates_rule_file_path="${templates_rule_file_dir}/templates.yml"
           if [ -f "${templates_rule_file}" ]; then
             echo "======> 规则文件已经存在"
             exit
           fi
           #sudo apt-get update
           #sudo apt-get install gettext
+          mkdir -p ${templates_rule_file_dir}
           envsubst < src/templates-replace/rule.tpl.yml > ${templates_rule_file}
           git add .
           git commit -m "生成规则文件"
