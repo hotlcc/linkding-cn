@@ -67,8 +67,10 @@ jobs:
         if: env.TEMPLATES_DIR_EXIST != 'true'
         run: |
           cd ${LINKDING_TEMP_DIR}
-          zip_file=linkding-v${VERSION}.zip
+          pwd
+          zip_file=linkding-${VERSION}.zip
           wget ${LINKDING_RELEASE_ZIP_URL} -o ${zip_file}
+          ls -al
           unzip ${zip_file}
           ls -al
       - name: 生成模板文件
