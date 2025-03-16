@@ -90,8 +90,12 @@ jobs:
           COPY resources/${VERSION}/templates /etc/linkding/bookmarks/
           CMD ["./bootstrap.sh"]
           ' > Dockerfile
-          docker build -t .
+          pwd
+          ls -al
+          docker build -t ${BUILD_IMAGE_TAG} .
           rm -rf Dockerfile
+          ls -al
+          docker images
           # test
           docker run --rm -d --name linkding ${BUILD_IMAGE_TAG}
           docker exec -it linkding ls /etc/linkding/bookmarks/
