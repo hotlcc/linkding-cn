@@ -15,14 +15,13 @@ jobs:
           echo "======> Release变量准备完毕"
       - name: 生成规则文件
         run: |
-          pwd
           templates_rule_file="resources/${VERSION}/templates.yml"
           if [ -f "${templates_rule_file}" ]; then
             echo "======> 规则文件已经存在"
             exit
           fi
-          apt-get update
-          apt-get install gettext
+          sudo apt-get update
+          sudo apt-get install gettext
           envsubst < src/templates-replace/rule.tpl.yml > ${templates_rule_file}
           echo "======> 规则文件生成完毕"
 
