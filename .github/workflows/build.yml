@@ -11,8 +11,8 @@ jobs:
         uses: actions/checkout@v3
       - name: 准备Git环境
         run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name Allen
+          git config --global user.email hotlcc@qq.com
       - name: 准备Release变量
         run: |
           sed '/^$/d' .release | uniq | awk -F '=' '{print " " $1 "=" $2}' | while read line; do
