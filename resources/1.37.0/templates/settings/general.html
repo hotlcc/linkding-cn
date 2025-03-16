@@ -1,0 +1,397 @@
+{% extends "bookmarks/layout.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+  <div class="settings-page">
+
+    {% include 'settings/nav.html' %}
+
+    {# Profile section #}
+    {% if success_message %}
+      <div class="toast toast-success mb-4">{{ success_message }}</div>
+    {% endif %}
+    {% if error_message %}
+      <div class="toast toast-error mb-4">{{ error_message }}</div>
+    {% endif %}
+
+    <section class="content-area">
+      <h2>主要</h2>
+      <p>
+        <a href="{% url 'change_password' %}">更改密码</a>
+      </p>
+      <form action="{% url 'bookmarks:settings.update' %}" method="post" novalidate data-turbo="false">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="{{ form.theme.id_for_label }}" class="form-label">主题</label>
+          {{ form.theme|add_class:"form-select width-25 width-sm-100" }}
+          <div class="form-input-hint">
+            使用浅色 <code>Light</code> 或深色 <code>Dark</code> 主题，或根据系统设置自动 <code>Auto</code> 调整主题。
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.bookmark_date_display.id_for_label }}" class="form-label">书签日期格式</label>
+          {{ form.bookmark_date_display|add_class:"form-select width-25 width-sm-100" }}
+          <div class="form-input-hint">
+            是否显示书签日期为相对 <code>Relative</code> 时间（多久前），或绝对 <code>Absolute</code> 日期。或者可以隐藏 <code>Hidden</code> 日期。
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.bookmark_description_display.id_for_label }}" class="form-label">书签描述</label>
+          {{ form.bookmark_description_display|add_class:"form-select width-25 width-sm-100" }}
+          <div class="form-input-hint">
+            是否在同一行中 <code>Inline</code> 显示书签描述和标签，或者作为单独的块 <code>Separate</code> 。
+          </div>
+        </div>
+        <div
+            class="form-group {% if request.user_profile.bookmark_description_display == 'inline' %}d-hide{% endif %}">
+          <label for="{{ form.bookmark_description_max_lines.id_for_label }}" class="form-label">书签描述最大行数</label>
+          {{ form.bookmark_description_max_lines|add_class:"form-input width-25 width-sm-100" }}
+          <div class="form-input-hint">
+            限制显示书签描述的行数。
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.display_url.id_for_label }}" class="form-checkbox">
+            {{ form.display_url }}
+            <i class="form-icon"></i> 显示书签网址
+          </label>
+          <div class="form-input-hint">
+            启用此设置后，将在标题下方显示书签网址。
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.permanent_notes.id_for_label }}" class="form-checkbox">
+            {{ form.permanent_notes }}
+            <i class="form-icon"></i> 永久显示笔记
+          </label>
+          <div class="form-input-hint">
+            是否永久显示书签笔记，而无需单独切换它们。
+            或者可以使用键盘快捷键 <code>e</code> 暂时显示所有笔记。
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">书签操作</label>
+          <label for="{{ form.display_view_bookmark_action.id_for_label }}" class="form-checkbox">
+            {{ form.display_view_bookmark_action }}
+            <i class="form-icon"></i> 查看
+          </label>
+          <label for="{{ form.display_edit_bookmark_action.id_for_label }}" class="form-checkbox">
+            {{ form.display_edit_bookmark_action }}
+            <i class="form-icon"></i> 编辑
+          </label>
+          <label for="{{ form.display_archive_bookmark_action.id_for_label }}" class="form-checkbox">
+            {{ form.display_archive_bookmark_action }}
+            <i class="form-icon"></i> 归档
+          </label>
+          <label for="{{ form.display_remove_bookmark_action.id_for_label }}" class="form-checkbox">
+            {{ form.display_remove_bookmark_action }}
+            <i class="form-icon"></i> 删除
+          </label>
+          <div class="form-input-hint">
+            为每个书签显示的操作。
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.bookmark_link_target.id_for_label }}" class="form-label">如何打开书签</label>
+          {{ form.bookmark_link_target|add_class:"form-select width-25 width-sm-100" }}
+          <div class="form-input-hint">
+            是否在新页面 <code>New page</code> 或同一页面 <code>Same page</code> 中打开书签。
+          </div>
+        </div>
+        <div class="form-group{% if form.items_per_page.errors %} has-error{% endif %}">
+          <label for="{{ form.items_per_page.id_for_label }}" class="form-label">每页显示项目</label>
+          {{ form.items_per_page|add_class:"form-input width-25 width-sm-100"|attr:"min:10" }}
+          {% if form.items_per_page.errors %}
+            <div class="form-input-hint is-error">
+              {{ form.items_per_page.errors }}
+            </div>
+          {% else %}
+          {% endif %}
+          <div class="form-input-hint">
+            每页显示的书签数量。
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.sticky_pagination.id_for_label }}" class="form-checkbox">
+            {{ form.sticky_pagination }}
+            <i class="form-icon"></i> 固定分页
+          </label>
+          <div class="form-input-hint">
+            启用此设置后，分页控件将固定在屏幕底部，以便始终可见，而无需首先滚动到页面末尾。
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.tag_search.id_for_label }}" class="form-label">标签搜索</label>
+          {{ form.tag_search|add_class:"form-select width-25 width-sm-100" }}
+          <div class="form-input-hint">
+            在严格模式 <code>Strict</code> 下，标签必须以 <code>#</code> 开头。
+            在宽松模式 <code>Lax</code> 下，也可以搜索不包含 <code>#</code> 的标签。
+            注意，不包含 <code>#</code> 的标签与搜索术语是不可区分的，这意味着搜索结果也将包括其他情况下搜索术语匹配的书签。
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.tag_grouping.id_for_label }}" class="form-label">标签分组</label>
+          {{ form.tag_grouping|add_class:"form-select width-25 width-sm-100" }}
+          <div class="form-input-hint">
+            在按字母顺序排列模式 <code>Alphabetical</code> 下，标签将按首字母分组。
+            如果禁用，标签将不会分组。
+          </div>
+        </div>
+        <div class="form-group">
+          <details {% if form.auto_tagging_rules.value %}open{% endif %}>
+            <summary>
+              <span class="form-label d-inline-block">自动标签</span>
+            </summary>
+            <label for="{{ form.auto_tagging_rules.id_for_label }}" class="text-assistive">Auto Tagging</label>
+            <div>
+              {{ form.auto_tagging_rules|add_class:"form-input monospace"|attr:"rows:6" }}
+            </div>
+          </details>
+          <div class="form-input-hint">
+            根据预定义规则自动为书签添加标签。
+            每行一个规则，它将 URL 映射到一个或多个标签。例如：
+            <pre>youtube.com 视频
+reddit.com/r/Music 音乐 reddit</pre>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.enable_favicons.id_for_label }}" class="form-checkbox">
+            {{ form.enable_favicons }}
+            <i class="form-icon"></i> 启用图标
+          </label>
+          <div class="form-input-hint">
+            自动加载书签网站的图标，并将它们显示在每个书签旁边。
+            启用此功能时，将自动下载所有缺失的图标。
+            默认情况下，此功能使用 <b>Google 服务</b> 下载图标。
+            如果不想使用此服务，请点击 <a
+              href="https://linkding.link/options/#ld_favicon_provider"
+              target="_blank">配置文档</a> 查看如何配置自定义图标提供程序。
+            图标在后台下载，可能需要一些时间才能显示出来。
+          </div>
+          {% if request.user_profile.enable_favicons and enable_refresh_favicons %}
+            <button class="btn mt-2" name="refresh_favicons">刷新图标</button>
+          {% endif %}
+        </div>
+        <div class="form-group">
+          <label for="{{ form.enable_preview_images.id_for_label }}" class="form-checkbox">
+            {{ form.enable_preview_images }}
+            <i class="form-icon"></i> 启用预览图
+          </label>
+          <div class="form-input-hint">
+            自动加载书签网站的预览图，并将它们显示在每个书签旁边。
+            启用此功能时，将自动下载所有缺失的预览图。
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.web_archive_integration.id_for_label }}" class="form-label">集成互联网档案馆</label>
+          {{ form.web_archive_integration|add_class:"form-select width-25 width-sm-100" }}
+          <div class="form-input-hint">
+            启用此功能将自动在 <a
+              href="https://web.archive.org/" target="_blank" rel="noopener">Internet Archive Wayback
+            Machine</a> 上创建书签网站的快照。
+            这允许保留并稍后访问网站，就像它被书签时一样，以防它脱机或其内容被修改。
+            如果您使用此功能，请考虑向 <a href="https://archive.org/donate" target="_blank" rel="noopener">Internet Archive</a> 捐款。
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.enable_sharing.id_for_label }}" class="form-checkbox">
+            {{ form.enable_sharing }}
+            <i class="form-icon"></i> 启用书签共享
+          </label>
+          <div class="form-input-hint">
+            允许与其他用户共享书签，并查看共享书签。
+            禁用此功能将隐藏其他用户以前共享的书签。
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="{{ form.enable_public_sharing.id_for_label }}" class="form-checkbox">
+            {{ form.enable_public_sharing }}
+            <i class="form-icon"></i> 启用公开书签共享
+          </label>
+          <div class="form-input-hint">
+            使共享书签公开可访问，无需登录。
+            这意味着任何链接到此实例的人都可以通过 <a
+              href="{% url 'bookmarks:shared' %}">共享书签页面</a> 查看共享书签。
+          </div>
+        </div>
+        {% if has_snapshot_support %}
+          <div class="form-group">
+            <label for="{{ form.enable_automatic_html_snapshots.id_for_label }}" class="form-checkbox">
+              {{ form.enable_automatic_html_snapshots }}
+              <i class="form-icon"></i> 自动创建 HTML 快照
+            </label>
+            <div class="form-input-hint">
+              自动创建书签时的 HTML 快照。或者，当禁用时，快照可以手动在书签的详细视图中创建。
+            </div>
+            <button class="btn mt-2" name="create_missing_html_snapshots">创建缺失的 HTML 快照</button>
+          </div>
+        {% endif %}
+        <div class="form-group">
+          <label for="{{ form.default_mark_unread.id_for_label }}" class="form-checkbox">
+            {{ form.default_mark_unread }}
+            <i class="form-icon"></i> 默认创建未读书签
+          </label>
+          <div class="form-input-hint">
+            在创建新书签时，设置“标记为未读”选项的默认状态。
+            设置此选项将使所有新书签默认为未读。
+            可以在创建每个新书签时覆盖此选项。
+          </div>
+        </div>
+        <div class="form-group">
+          <details {% if form.custom_css.value %}open{% endif %}>
+            <summary>
+              <span class="form-label d-inline-block">自定义 CSS</span>
+            </summary>
+            <label for="{{ form.custom_css.id_for_label }}" class="text-assistive">Custom CSS</label>
+            <div>
+              {{ form.custom_css|add_class:"form-input monospace"|attr:"rows:6" }}
+            </div>
+          </details>
+          <div class="form-input-hint">
+            允许向页面添加自定义 CSS。
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" name="update_profile" value="保存" class="btn btn-primary btn-wide mt-2">
+        </div>
+      </form>
+    </section>
+
+    {# Global settings section #}
+    {% if global_settings_form %}
+      <section class="content-area">
+        <h2>全局设置</h2>
+        <form action="{% url 'bookmarks:settings.update' %}" method="post" novalidate data-turbo="false">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="{{ global_settings_form.landing_page.id_for_label }}" class="form-label">首页</label>
+            {{ global_settings_form.landing_page|add_class:"form-select width-25 width-sm-100" }}
+            <div class="form-input-hint">
+              未认证用户访问根 URL 时重定向到的页面。
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="{{ global_settings_form.guest_profile_user.id_for_label }}" class="form-label">访客用户配置</label>
+            {{ global_settings_form.guest_profile_user|add_class:"form-select width-25 width-sm-100" }}
+            <div class="form-input-hint">
+              未登录用户使用的用户配置。这将影响公共共享书签的主题、书签列表设置等方面的显示方式。您可以使用自己的配置文件，或者创建专门用于此目的的用户。默认情况下，使用具有固定设置的标准配置文件。
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="{{ global_settings_form.enable_link_prefetch.id_for_label }}" class="form-checkbox">
+              {{ global_settings_form.enable_link_prefetch }}
+              <i class="form-icon"></i> 悬停时预取链接
+            </label>
+            <div class="form-input-hint">
+              在悬停时预取内部链接。这可以提高导航应用程序时的感知性能，但也会增加服务器的负载以及带宽使用量。
+            </div>
+          </div>
+
+          <div class="form-group">
+            <input type="submit" name="update_global_settings" value="保存" class="btn btn-primary btn-wide mt-2">
+          </div>
+        </form>
+      </section>
+    {% endif %}
+
+    {# Import section #}
+    <section class="content-area">
+      <h2>导入</h2>
+      <p>以 Netscape HTML 格式导入书签和标签。这将执行同步，其中新书签将被添加，而现有书签将被更新。</p>
+      <form method="post" enctype="multipart/form-data" action="{% url 'bookmarks:settings.import' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="import_map_private_flag" class="form-checkbox">
+            <input type="checkbox" id="import_map_private_flag" name="map_private_flag">
+            <i class="form-icon"></i> 导入公共书签作为共享
+          </label>
+          <div class="form-input-hint">
+            当从支持将书签标记为公共或私有（使用<code>PRIVATE</code>属性）的服务导入书签时，启用此选项将导入所有标记为非私有书签的共享书签。
+            否则，所有书签将被导入为私有书签。
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="input-group width-75 width-md-100">
+            <input class="form-input" type="file" name="import_file">
+            <input type="submit" class="input-group-btn btn btn-primary" value="上传">
+          </div>
+        </div>
+      </form>
+    </section>
+
+    {# Export section #}
+    <section class="content-area">
+      <h2>导出</h2>
+      <p>以 Netscape HTML 格式导出所有书签。</p>
+      <a class="btn btn-primary" target="_blank" href="{% url 'bookmarks:settings.export' %}">下载 (.html)</a>
+      {% if export_error %}
+        <div class="has-error">
+          <p class="form-input-hint">
+            {{ export_error }}
+          </p>
+        </div>
+      {% endif %}
+    </section>
+
+    {# About section #}
+    <section class="content-area about">
+      <h2>关于</h2>
+      <table class="table">
+        <tbody>
+        <tr>
+          <td>版本</td>
+          <td>{{ version_info }}</td>
+        </tr>
+        <tr>
+          <td rowspan="3" style="vertical-align: top">链接</td>
+          <td><a href="https://github.com/sissbruecker/linkding/"
+                 target="_blank">GitHub</a></td>
+        </tr>
+        <tr>
+          <td><a href="https://linkding.link/"
+                 target="_blank">文档</a></td>
+        </tr>
+        <tr>
+          <td><a href="https://github.com/sissbruecker/linkding/blob/master/CHANGELOG.md"
+                 target="_blank">更新日志</a></td>
+        </tr>
+        <tr><td>汉化</td><td><a href="https://github.com/hotlcc" target="_blank">@hotlcc</a></td></tr></tbody>
+      </table>
+    </section>
+  </div>
+
+  <script>
+    (function init() {
+      const enableSharing = document.getElementById("{{ form.enable_sharing.id_for_label }}");
+      const enablePublicSharing = document.getElementById("{{ form.enable_public_sharing.id_for_label }}");
+      const bookmarkDescriptionDisplay = document.getElementById("{{ form.bookmark_description_display.id_for_label }}");
+      const bookmarkDescriptionMaxLines = document.getElementById("{{ form.bookmark_description_max_lines.id_for_label }}");
+
+      // Automatically disable public bookmark sharing if bookmark sharing is disabled
+      function updatePublicSharing() {
+        if (enableSharing.checked) {
+          enablePublicSharing.disabled = false;
+        } else {
+          enablePublicSharing.disabled = true;
+          enablePublicSharing.checked = false;
+        }
+      }
+
+      updatePublicSharing();
+      enableSharing.addEventListener("change", updatePublicSharing);
+
+      // Automatically hide the bookmark description max lines input if the description display is set to inline
+      function updateBookmarkDescriptionMaxLines() {
+        if (bookmarkDescriptionDisplay.value === "inline") {
+          bookmarkDescriptionMaxLines.closest(".form-group").classList.add("d-hide");
+        } else {
+          bookmarkDescriptionMaxLines.closest(".form-group").classList.remove("d-hide");
+        }
+      }
+
+      updateBookmarkDescriptionMaxLines();
+      bookmarkDescriptionDisplay.addEventListener("change", updateBookmarkDescriptionMaxLines);
+    })();
+  </script>
+
+{% endblock %}

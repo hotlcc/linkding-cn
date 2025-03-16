@@ -1,0 +1,15 @@
+{% extends 'bookmarks/layout.html' %}
+{% load bookmarks %}
+
+{% block content %}
+  <div class="bookmarks-form-page">
+    <section class="content-area">
+      <div class="content-area-header">
+        <h2>添加书签</h2>
+      </div>
+      <form action="{% url 'bookmarks:new' %}" method="post" novalidate>
+        {% bookmark_form form return_url auto_close=auto_close %}
+      </form>
+    </section>
+  </div>
+{% endblock %}
