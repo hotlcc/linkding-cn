@@ -93,8 +93,7 @@ jobs:
           " | docker build -t ${BUILD_IMAGE_TAG} . -
           echo "======> Docker 镜像构建完毕"
           docker images
-      - name: 上传镜像
-        run: |
+
           
 
 
