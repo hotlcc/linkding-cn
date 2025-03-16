@@ -51,6 +51,9 @@ jobs:
           BUILD_IMAGE_TAG=${{ secrets.DOCKER_HUB_USERNAME }}/linkding-cn:${VERSION}
           echo "BUILD_IMAGE_TAG=${BUILD_IMAGE_TAG}" >> $GITHUB_ENV
 
+          BUILD_IMAGE_TAG_LATEST=${{ secrets.DOCKER_HUB_USERNAME }}/linkding-cn:latest
+          echo "BUILD_IMAGE_TAG_LATEST=${BUILD_IMAGE_TAG_LATEST}" >> $GITHUB_ENV
+
           echo "======> Release变量准备完毕"
       - name: 生成规则文件
         if: env.RULE_PATH_EXIST != 'true'
@@ -99,6 +102,10 @@ jobs:
         run: |
           docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
           docker push ${BUILD_IMAGE_TAG}
+          if [ ${LATEST} -eq "true" ]; then
+            docker tag ${BUILD_IMAGE_TAG} ${BUILD_IMAGE_TAG_LATEST}
+            docker push ${BUILD_IMAGE_TAG_LATEST}
+          fi
           echo "======> Docker 镜像上传完毕"
           docker logout
 
