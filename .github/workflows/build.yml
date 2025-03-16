@@ -38,7 +38,7 @@ jobs:
             echo "======> 规则文件已经存在"
           fi
 
-          LINKDING_TEMP_DIR=${TMPDIR}/linkding
+          LINKDING_TEMP_DIR=/tmp/$(uuidgen)/linkding
           echo "LINKDING_TEMP_DIR=${LINKDING_TEMP_DIR}" >> $GITHUB_ENV
           mkdir -p ${LINKDING_TEMP_DIR}
 
