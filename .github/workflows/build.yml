@@ -90,11 +90,18 @@ jobs:
           FROM ${FROM_IMAGE_TAG}
           COPY resources/${VERSION}/templates /etc/linkding/bookmarks/
           CMD ["./bootstrap.sh"]
-          " | docker build -t ${BUILD_IMAGE_TAG} - .
+          " > Dockerfile
+          docker build -t ${BUILD_IMAGE_TAG} .
+          rm -rf Dockerfile
           echo "======> Docker 镜像构建完毕"
           docker images
+      - name: 上传镜像到 Docker Hub
+        run: |
+          docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}
+          docker push ${BUILD_IMAGE_TAG}
+          echo "======> Docker 镜像上传完毕"
+          docker logout
 
-          
 
 
 
