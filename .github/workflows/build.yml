@@ -20,9 +20,12 @@ jobs:
             echo "======> 规则文件已经存在"
             exit
           fi
-          sudo apt-get update
-          sudo apt-get install gettext
+          #sudo apt-get update
+          #sudo apt-get install gettext
           envsubst < src/templates-replace/rule.tpl.yml > ${templates_rule_file}
+          git add .
+          git commit -m "生成规则文件"
+          git push
           echo "======> 规则文件生成完毕"
 
 
