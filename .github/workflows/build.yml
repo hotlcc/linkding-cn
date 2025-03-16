@@ -1,6 +1,11 @@
 name: 自动构建
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - '.release.env'
 jobs:
   main-job:
     runs-on: ubuntu-latest
