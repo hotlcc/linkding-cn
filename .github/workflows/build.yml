@@ -107,7 +107,7 @@ jobs:
         run: |
           docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
           docker push ${BUILD_IMAGE_TAG}
-          if [ ${LATEST} -eq "true" ]; then
+          if [ "${LATEST}" == "true" ]; then
             docker tag ${BUILD_IMAGE_TAG} ${BUILD_IMAGE_TAG_LATEST}
             docker push ${BUILD_IMAGE_TAG_LATEST}
           fi
