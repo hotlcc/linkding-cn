@@ -72,7 +72,7 @@ jobs:
       - name: 生成模板文件
         if: env.TEMPLATES_DIR_EXIST != 'true'
         run: |
-          sh tools/text-replace/text-replace.sh -i ${LINKDING_TEMP_DIR}/linkding-${VERSION}/bookmarks/templates -o ${TEMPLATES_DIR} -r ${RULE_PATH}
+          java -jar tools/text-replace/text-replace.jar -i ${LINKDING_TEMP_DIR}/linkding-${VERSION}/bookmarks/templates -o ${TEMPLATES_DIR} -r ${RULE_PATH}
           git add .
           git commit -m "生成模板文件"
           git push
