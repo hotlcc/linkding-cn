@@ -86,11 +86,11 @@ jobs:
           echo "======> 模板文件生成完毕"
       - name: 构建 Docker 镜像
         run: |
-          echo '
+          echo "
           FROM ${FROM_IMAGE_TAG}
           COPY resources/${VERSION}/templates /etc/linkding/bookmarks/
           CMD ["./bootstrap.sh"]
-          ' > Dockerfile
+          " > Dockerfile
           pwd
           ls -al
           docker build -t ${BUILD_IMAGE_TAG} .
