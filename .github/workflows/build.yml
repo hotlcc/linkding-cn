@@ -94,11 +94,9 @@ jobs:
           echo "======> 模板文件生成完毕"
       - name: 构建 Docker 镜像
         run: |
-          echo "
-          FROM ${FROM_IMAGE_TAG}
-          COPY resources/${VERSION}/templates /etc/linkding/bookmarks/
-          CMD ["./bootstrap.sh"]
-          " > Dockerfile
+          #sudo apt-get update
+          #sudo apt-get install gettext
+          envsubst < Dockerfile.tpl > Dockerfile
           docker build -t ${BUILD_IMAGE_TAG} .
           rm -rf Dockerfile
           echo "======> Docker 镜像构建完毕"
