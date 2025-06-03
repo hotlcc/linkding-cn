@@ -1,0 +1,20 @@
+{% extends 'bookmarks/layout.html' %}
+
+{% block head %}
+  {% with page_title="添加书签 - Linkding" %}
+    {{ block.super }}
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+  <div class="bookmarks-form-page">
+    <main aria-labelledby="main-heading">
+      <div class="section-header">
+        <h1 id="main-heading">添加书签</h1>
+      </div>
+      <form action="{% url 'linkding:bookmarks.new' %}" method="post" novalidate>
+        {% include 'bookmarks/form.html' %}
+      </form>
+    </main>
+  </div>
+{% endblock %}
