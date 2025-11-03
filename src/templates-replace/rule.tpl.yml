@@ -58,6 +58,16 @@
       expression-type: REGEXP
       replacement: '共享的<'
 
+# bookmarks/bookmarklet.js
+#- includes:
+#    - bookmarks/bookmarklet.js
+#  items:
+#    # 【添加书签】js脚本支持获取网页标题和描述
+#    - expression: "window.location;"
+#      replacement: "window.location;\n    const title = document.querySelector('title')?.textContent || document.querySelector(`meta[property='og:title']`)?.getAttribute('content') || '';\n    const description = document.querySelector(`meta[name='description']`)?.getAttribute('content') || document.querySelector(`meta[property='og:description']`)?.getAttribute(`content`) || '';"
+#    - expression: "encodeURIComponent(bookmarkUrl);"
+#      replacement: "encodeURIComponent(bookmarkUrl);\n    applicationUrl += '&title=' + encodeURIComponent(title);\n    applicationUrl += '&description=' + encodeURIComponent(description);"
+
 # bookmarks/close.html
 - includes:
     - bookmarks/close.html
